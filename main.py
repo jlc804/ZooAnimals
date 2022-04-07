@@ -1,13 +1,12 @@
 class ZooAnimals:
-    pass
+    def __init__(self, weight, height):
+        self.weight = weight
+        self.height = height
+        self.volume = weight * height
 
-zebra = ZooAnimals()
-coyote = ZooAnimals
 
-print(zebra, coyote)
+zebra = ZooAnimals(10,12)
+coyote = ZooAnimals(15,25)
 
-zebra.weight=10
-zebra.height=12
-zebra.volume=zebra.weight*zebra.height
+print(zebra.volume, coyote.volume)
 
-print(str(zebra.volume))
