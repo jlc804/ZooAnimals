@@ -1,6 +1,6 @@
 class ZooAnimals:
     def __init__(self, weight, height):
-        self.weight = weight
+        self.x = weight
         self.height = height
         self.volume = weight * height
         self.whatever = 0
@@ -14,7 +14,7 @@ class ZooAnimals:
 zebra = ZooAnimals(10,12)
 coyote = ZooAnimals(15,25)
 
-print(zebra.volume, coyote.volume)
+print(zebra.x, coyote.volume)
 print(zebra.fullname())
 
 print(ZooAnimals.fullname(zebra))
