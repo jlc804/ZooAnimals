@@ -1,21 +1,41 @@
 class ZooAnimals:
-    def __init__(self, weight, height):
-        self.x = weight
-        self.height = height
-        self.volume = weight * height
-        self.whatever = 0
-
-    def fullname(self):
-        return self.whatever
+        """
+        Class for Zoo Animals
+        :params:
+            self.animalType - Animal type that starts with 'S'
+            self.idTag:int - Animal ID tag
+            self.minTemperature:float - minimum temperatures for animal's enclosure (in Celsius)
+            self.maxTemperature:float - maximum temperatures for animal's enclosure (in Celsius)
+        """
+    def __init__(self):
+        self.animalType = coyote
+        self.idTag = None
+        self.minTemperature = 20
+        self.maxTemperature = 100
 
     def __str__(self):
-        return '45'
+        return 'test'
 
-zebra = ZooAnimals(10,12)
-coyote = ZooAnimals(15,25)
+    def getAnimalType(self):
+        return self.animalType
 
-print(zebra.x, coyote.volume)
-print(zebra.fullname())
+    def getIdTag(self):
+        return self.idTag
 
-print(ZooAnimals.fullname(zebra))
-print(ZooAnimals(3,4))
+    def setIdTag(self, anIdTag):
+        self.idTag = anIdTag
+        return self.idTag
+
+    def getMinTemperature(self):
+        return self.minTemperature
+
+    def getMaxTemperature(self):
+        return self.maxTemperature
+
+coyote = ZooAnimals('Coyote',25,12,12)
+
+print(coyote.getAnimalType())
+print(coyote.getIdTag())
+coyote.setIdTag(100)
+print(coyote.getIdTag())
+print(coyote)
