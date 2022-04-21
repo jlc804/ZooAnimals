@@ -1,3 +1,12 @@
+def main():
+    coyote = Coyote()
+    print(coyote.getAnimalType())
+    print(coyote.getIdTag())
+    coyote.setIdTag(100)
+    print(coyote.getIdTag())
+    print(coyote.getMinTemperature())
+    print(coyote.getMaxTemperature())
+
 class Coyote:
     """Class for Coyote"""
 
@@ -30,10 +39,5 @@ class Coyote:
         """Returns Minimum Temperature in Celsius"""
         return self.maxTemperature
 
-coyote = Coyote()
-print(coyote.getAnimalType())
-print(coyote.getIdTag())
-coyote.setIdTag(100)
-print(coyote.getIdTag())
-print(coyote.getMinTemperature())
-print(coyote.getMaxTemperature())
+if __name__ == "__main__":
+    main()
