@@ -4,8 +4,8 @@ def main():
     print(coyote.getIdTag())
     coyote.setIdTag(100)
     print(coyote.getIdTag())
-    print(coyote.getMinTemperature())
-    print(coyote.getMaxTemperature())
+    print(id(coyote.getMinTemperature()))
+    print(id(coyote.getMaxTemperature()))
 
 class Coyote:
     """Class for Coyote"""

@@ -5,6 +5,14 @@ def main():
    print()
    show_two_then_others(a = 2, b = "three", c = 1, d = 4.5, e = "eieio", f = -200)
    print()
+   a = 2
+   y = a
+   print(id(a),id(y))
+   a = 10000
+   y = 9999+1
+   print(id(a), id(y))
+   print(a, y)
+
 
 # END CLIENT main()  -------------------------------------------
 # BEGIN Global Scope functions ---------------------------------
