@@ -12,7 +12,6 @@ def main():
     teams = seating_chart.assignTeams()
     seating_chart.displayTeams(teams)
 
-
 class seating_chart_class:
     def __init__(self, seats):
         self.seats = seats
@@ -28,19 +27,13 @@ class seating_chart_class:
 
 
     def assignTeams(self):
-        team0 = []
-        team1 = []
-        team2 = []
-        team3 = []
-        team4 = []
-        teams = [team0, team1, team2, team3, team4]
-
+        teams = [[], [], [], [], []]
         for row in self.seats:
-                i = 0
-                for element in row:
-                    if str(element) != 'Empty':
-                        teams[i].append(element)
-                    i+=1
+            i = 0
+            for element in row:
+                if str(element) != 'Empty':
+                    teams[i].append(element)
+                i+=1
         return teams
 
     def displayTeams(self, teams):
@@ -53,10 +46,6 @@ class seating_chart_class:
             i+=1
 
 
-
-
 if __name__ == "__main__":
     main()
-
-
 
