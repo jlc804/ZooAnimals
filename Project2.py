@@ -1,17 +1,61 @@
-import numpy
 
-num_students = int( input( "How many students in class? " ))
-seating_chart = [ None for k in range(num_students) ]
-number_of_students = 10
-students_in_each_row = 0
-students = ['Undefined' for k in range(number_of_students)]
-seat_row =[]
-seat_column = []
+def main():
+    seats_row0 = ['Empty' for k in range(5)]
+    seats_row1 = ['Empty' for k in range(5)]
+    seats_row2 = ['Empty' for k in range(5)]
+    seats_row3 = ['Empty' for k in range(3)]
+    seats_row4 = ['Empty' for k in range(2)]
+    seats = [seats_row0, seats_row1, seats_row2, seats_row3, seats_row4]
+    #test = [[seat0],[seat2]]
+    seating_chart = seating_chart_class(seats)
+    seating_chart.addStudent('Trey', 4,0)
+    seating_chart.displaySeatingChart()
 
-for i in range(num_students):
-    num_students_in_row = int(input('Number of students in Row {} '.format(i)))
-    seating_chart[i] = num_students_in_row * ["(undefined)"]
 
-print(seating_chart)
+
+
+
+
+class seating_chart_class:
+    def __init__(self, seats):
+        self.num = 20
+        self.name = 'Student'
+        self.seats = seats
+
+    def addStudent(self, student_name, target_seat_row, col):
+        self.seats[target_seat_row][col] = student_name
+
+    def displaySeatingChart(self):
+        for row in range(len(self.seats)):
+            # print('Row: '+str(row), end='')
+            for element in range(len(self.seats[row])):
+                print('\t' + str(self.seats[row][element]), end='')
+            print('')
+
+    def assignTeams(selfs):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    main()
+
 
 
