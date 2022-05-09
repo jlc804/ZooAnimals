@@ -24,20 +24,28 @@ class PlanetList:
         new_node.next = self.head
         self.head = new_node
 
-    def print(self):
-        print('s')
+    def getMass(self):
+        return self.getTotalMass(self.head)
 
+    def getTotalMass(self, node):
+        totalmass = 0
+        temp = self.head
+        while (temp):
+            totalmass += temp.mass
+            temp = temp.next
+        return totalmass
 
 
 def main():
     list = PlanetList()
-    list.push("11 Comae Berenices b", 1.29, 326, "2007", 1.08)
+    list.push("11 Comae Berenices b", 1.29, 326, 2007, 1.08)
     list.push('COCONUTS-2 b', 7506.0, 402000013.5, 2021, 6.3)
-    list.push("11 Comae Berenices b", 1.29, 326, "2007", 1.08)
-    list.push("11 Ursae Minoris b", 1.53, 1.4, "2009", 14.74)
+    list.push("11 Comae Berenices b", 1.29, 326, 2007, 1.08)
+    list.push("11 Ursae Minoris b", 1.53, 1.4, 2009, 14.74)
     list.push('14 Andromedae b', 0.83, 185.8, 2008, 4.8)
     list.push('42 Draconis b', 1.19, 479.1, 2008, 3.88)
-    list.print()
+    print(list.getMass())
+
 
 
 
