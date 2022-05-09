@@ -1,6 +1,4 @@
-# Node class
 class PlanetNode:
-
     def __init__(self, ID, radius, period, discovery, mass, next=None):
         self.ID = ID
         self.radius = radius
@@ -9,11 +7,8 @@ class PlanetNode:
         self.mass = mass
         self.next = next
 
-
     def total_mass(self):
         return self.mass
-
-
 
 class PlanetList:
     def __init__(self):
@@ -33,18 +28,19 @@ class PlanetList:
         while (temp):
             totalmass += temp.mass
             temp = temp.next
-        return totalmass
+        return round(float(totalmass),6)
 
 
 def main():
-    list = PlanetList()
-    list.push("11 Comae Berenices b", 1.29, 326, 2007, 1.08)
-    list.push('COCONUTS-2 b', 7506.0, 402000013.5, 2021, 6.3)
-    list.push("11 Comae Berenices b", 1.29, 326, 2007, 1.08)
-    list.push("11 Ursae Minoris b", 1.53, 1.4, 2009, 14.74)
-    list.push('14 Andromedae b', 0.83, 185.8, 2008, 4.8)
-    list.push('42 Draconis b', 1.19, 479.1, 2008, 3.88)
-    print(list.getMass())
+    planetlist = PlanetList()
+    planetlist.push('30 Arietis B b', 0.99, 335.1, 2009, 13.82)
+    planetlist.push('4 Ursae Majoris b', 0.87, 269.3, 2006, 7.1)
+    planetlist.push('AU Microscopii b', 0.0645, 8.5, 2020, 17)
+    planetlist.push('BD+03 2562 b', 1.3, 481.9 , 2017, 1.13)
+    planetlist.push('CD Ceti b', 0.0185, 2.3 , 2020, 1.82)
+    planetlist.push('Kepler-1012 b', 0.0585, 5.5, 2016, 2.21)
+    totalmass = planetlist.getMass()
+    print('The total mass of all planets in the list is the equivalent of ' + str(totalmass) + ' Jupiters!' )
 
 
 
