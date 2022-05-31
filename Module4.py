@@ -1,5 +1,5 @@
 class PlanetNode:
-    def __init__(self, ID, radius, period, discovery, mass, next=None):
+    def __init__(self, ID, radius, period, discovery, mass, next = None):
         self.ID = ID
         self.radius = radius
         self.period = period
@@ -40,7 +40,7 @@ def main():
     planetlist.push('CD Ceti b', 0.0185, 2.3 , 2020, 1.82)
     planetlist.push('Kepler-1012 b', 0.0585, 5.5, 2016, 2.21)
     totalmass = planetlist.getMass()
-    print('The total mass of all planets in the list is the equivalent of ' + str(totalmass) + ' Jupiters!' )
+    print('The total mass of all exoplanets in the list is the equivalent of ' + str(totalmass) + ' Jupiters!' )
 
 
 
