@@ -1,5 +1,6 @@
 from random import random
 
+
 class Pokemon:
     basic_attack = 'tackle'
     damage = 40;
@@ -9,17 +10,13 @@ class Pokemon:
         self.trainer = trainer
         self.level = 1
         self.hp = 50
-        self.status_condition = None
-        self.prob = None
-
-    def __str__(self):
-        return self.name + ' ' + self.trainer
+        self.paralyzed = False
 
     def speak(self):
         print(self.name + '!')
 
     def attack(self, other):
-        if self.status_condition == None:
+        if not self.paralyzed:
             self.speak()
             print(self.name, ' used ', self.basic_attack, '!')
             other.receive_damage(self.damage)
@@ -36,9 +33,10 @@ class Psychic(Pokemon):
         self.hp = hp
         self.basic_attack = 'Psychic Shift'
         self.prob = 1.0
+        self.status_condition = None
 
     def attack(self, other):
-        if  self.status_condition == None:
+        if  self.status_condition != "paralyzed":
             self.speak()
             print(self.name, 'used', self.basic_attack, '!')
             if isinstance(other, (Poison, Fighting)):
@@ -62,12 +60,13 @@ class Bug(Pokemon):
         self.hp = hp
         self.basic_attack = 'Signal Beam'
         self.prob = .1
+        self.status_condition = None
 
     def attack(self, other):
-        if  self.status_condition == None:
+        if  self.status_condition is None:
             self.speak()
             print(self.name, 'used', self.basic_attack, '!')
-            if isinstance(other, (Grass, Psychic, Dark)) in self.strong_against:
+            if isinstance(other, (Grass, Psychic, Dark)):
                 other.receive_damage(self.damage*2)
             elif isinstance(other, (Fighting, Flying, Poison, Ghost,Fire,Fairy)):
                 other.receive_damage(self.damage/2)
@@ -106,7 +105,9 @@ p1 = Psychic('Mewtwo', 'Jen', 100)
 p2 = Psychic('Gengar', 'James', 40)
 
 print(p1.hp)
+Butterfree.attack(p2)
 p2.attack(Butterfree)
+
 print(p2.hp)
 print(p1.hp)
 
