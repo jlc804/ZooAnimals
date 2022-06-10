@@ -1,4 +1,4 @@
-import random
+import random as ran
 
 class Pokemon:
     basic_attack = 'tackle'
@@ -45,7 +45,7 @@ class Psychic(Pokemon):
             else:
                 other.receive_damage(self.damage)
 
-        if random() < self.prob and not isinstance(other, Psychic) and self.status_condition != 'paralyzed':
+        if ran.random() < self.prob and not isinstance(other, Psychic) and self.status_condition != 'paralyzed':
             other.status_condition = 'paralyzed'
             print(other.name + ' is ' + other.status_condition)
 
@@ -71,7 +71,7 @@ class Bug(Pokemon):
                 other.receive_damage(self.damage/2)
             else:
                 other.receive_damage(self.damage)
-        if random() < self.prob:
+        if ran.random() < self.prob:
             other.status_condition = 'confused'
             print(other.name + ' is ' + other.status_condition)
 
