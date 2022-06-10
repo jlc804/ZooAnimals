@@ -13,10 +13,13 @@ def main():
     type_of_pokemon = int(input("Please select an available Pokemon type to battle using 1 or 2: \n1: Bug\n2: Psychic\n"))
     user_pokename = input('\nPlease enter the name of the Pokemon:   ')
     user_hp = int(input('\nPlease enter the HP:   '))
+    print(user_hp)
     if type_of_pokemon == 1:
-        user = Psychic(user_pokename, 'user', user_hp)
-    elif type_of_pokemon == 2:
         user = Bug(user_pokename, 'user', user_hp)
+        print(user)
+
+    elif type_of_pokemon == 2:
+        user = Psychic(user_pokename, 'user', user_hp)
     else:
         print('Invalid Data')
 
