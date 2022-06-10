@@ -44,6 +44,7 @@ def main():
     else:
         print('Invalid Data')
 
+
     print(opponent.hp)
     while opponent.hp > 0:
         user.attack(opponent)
@@ -53,7 +54,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
 
