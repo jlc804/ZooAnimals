@@ -1,98 +1,33 @@
-from random import random
+from Pokemon_Class import Psychic as Psychic
+from Pokemon_Class import Bug as Bug
+
+def main():
+    from PokeGame import PokeGame as PokeGame
+    from Pokemon_Class import Pokemon as pokemon
+    game = PokeGame()
+    game.setup()
+    opponent = game.drawPokemon()
+    print('Welcome to the PokeGame!')
+    print('The following Pokemon is available to battle')
+    print(opponent)
+    type_of_pokemon = int(input("Please select an available Pokemon type to battle using 1 or 2: \n1: Bug\n2: Psychic\n"))
+    user_pokename = input('\nPlease enter the name of the Pokemon:   ')
+    user_hp = int(input('\nPlease enter the HP:   '))
+    if type_of_pokemon == 1:
+        user = Psychic(user_pokename, 'user', user_hp)
+    elif type_of_pokemon == 2:
+        user = Bug(user_pokename, 'user', user_hp)
+    else:
+        print('Invalid Data')
 
 
-class Pokemon:
-    basic_attack = 'tackle'
-    damage = 40;
-
-    def __init__(self, name, trainer):
-        self.name = name
-        self.trainer = trainer
-        self.level = 1
-        self.hp = 50
-        self.paralyzed = False
-
-    def speak(self):
-        print(self.name + '!')
-
-    def attack(self, other):
-        if not self.paralyzed:
-            self.speak()
-            print(self.name, ' used ', self.basic_attack, '!')
-            other.receive_damage(self.damage)
-
-    def receive_damage(self, damage):
-        self.hp = max(0, self.hp - damage)
-        if self.hp == 0:
-            print(self.name, ' fainted!')
-
-class Psychic(Pokemon):
-#Psychic Pokemon Class provided by Matthew Skokos
-    def __init__(self, name, trainer, hp):
-        super().__init__(name, trainer)
-        self.hp = hp
-        self.basic_attack = 'Psychic Shift'
-        self.prob = 1.0
-        self.status_condition = None
-
-    def attack(self, other):
-        if  self.status_condition != "paralyzed":
-            self.speak()
-            print(self.name, 'used', self.basic_attack, '!')
-            if isinstance(other, (Poison, Fighting)):
-                other.receive_damage(self.damage * 2)
-            elif isinstance(other, (Bug, Ghost, Dark)):
-                other.receive_damage(self.damage / 2)
-            else:
-                other.receive_damage(self.damage)
-
-        if random() < self.prob and not isinstance(other, Psychic) and self.status_condition != 'paralyzed':
-            other.status_condition = 'paralyzed'
-            print(other.name + ' is ' + other.status_condition)
-
-    def __str__(self):
-        return f'I am {self.name} and I can do {self.basic_attack}'
+    print(opponent.hp)
+    while opponent.hp > 0:
+        user.attack(opponent)
+        print(opponent.name + ' is down to '+ str(opponent.hp))
 
 
-class Bug(Pokemon):
-    def __init__(self, name, trainer, hp):
-        super().__init__(name, trainer)
-        self.hp = hp
-        self.basic_attack = 'Signal Beam'
-        self.prob = .1
-        self.status_condition = None
-
-    def attack(self, other):
-        if  self.status_condition is None:
-            self.speak()
-            print(self.name, 'used', self.basic_attack, '!')
-            if isinstance(other, (Grass, Psychic, Dark)):
-                other.receive_damage(self.damage*2)
-            elif isinstance(other, (Fighting, Flying, Poison, Ghost,Fire,Fairy)):
-                other.receive_damage(self.damage/2)
-            else:
-                other.receive_damage(self.damage)
-        if random() < self.prob:
-            other.status_condition = 'confused'
-            print(other.name + ' is ' + other.status_condition)
-
-    def __str__(self):
-        return f'I am {self.name} and I can do {self.basic_attack}!'
 
 
-class Poison(Pokemon):
-    pass
-class Fighting(Pokemon):
-    pass
-class Ghost(Pokemon):
-    pass
-class Dark(Pokemon):
-    pass
-class Grass(Pokemon):
-    pass
-class Flying(Pokemon):
-    pass
-class Fire(Pokemon):
-    pass
-class Fairy(Pokemon):
-    pass
+if __name__ == "__main__":
+    main()
