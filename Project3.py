@@ -46,7 +46,7 @@ class Psychic(Pokemon):
             else:
                 other.receive_damage(self.damage)
 
-        if random() < self.prob and not isinstance(other, Psychic):
+        if random() < self.prob and not isinstance(other, Psychic) and self.status_condition != 'paralyzed':
             other.status_condition = 'paralyzed'
             print(other.name + ' is ' + other.status_condition)
 
@@ -77,7 +77,7 @@ class Bug(Pokemon):
             print(other.name + ' is ' + other.status_condition)
 
     def __str__(self):
-        return super().__str__() + " HP " + str(self.hp)
+        return f'I am {self.name} and I can do {self.basic_attack}!'
 
 
 class Poison(Pokemon):
@@ -96,18 +96,3 @@ class Fire(Pokemon):
     pass
 class Fairy(Pokemon):
     pass
-
-
-Butterfree = Bug('Butterfree', 'Trey',100)
-
-
-p1 = Psychic('Mewtwo', 'Jen', 100)
-p2 = Psychic('Gengar', 'James', 40)
-
-print(p1.hp)
-Butterfree.attack(p2)
-p2.attack(Butterfree)
-
-print(p2.hp)
-print(p1.hp)
-
