@@ -1,9 +1,8 @@
 from Pokemon_Class import Psychic as Psychic
 from Pokemon_Class import Bug as Bug
+from PokeGame import PokeGame as PokeGame
 
 def main():
-    from PokeGame import PokeGame as PokeGame
-    from Pokemon_Class import Pokemon as pokemon
     game = PokeGame()
     game.setup()
     opponent = game.drawPokemon()
