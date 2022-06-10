@@ -11,12 +11,11 @@ class Pokemon:
         self.hp = 50
         self.status_condition = None
         self.prob = None
-        self.type = ''
-        self.strong_against = ['Grass', 'Psychic', 'Dark']
-        self.weak_against = ['Fighting', 'Flying', 'Poison', 'Ghost', 'Fire', 'Fairy']
+        self.strong_against = []
+        self.weak_against = []
 
     def __str__(self):
-        return self.name + '' + self.trainer
+        return self.name + ' ' + self.trainer
 
     def speak(self):
         print(self.name + '!')
@@ -32,36 +31,51 @@ class Pokemon:
         if self.hp == 0:
             print(self.name, ' fainted!')
 
-class TestType(Pokemon):
+class Psychic(Pokemon):
+
     def __init__(self, name, trainer, hp):
         super().__init__(name, trainer)
-        self.level = 1
         self.hp = hp
-        self.prob = .1
-        self.type = 'Fighting'
-        self.strong_against = ['Grass', 'Psychic', 'Dark']
-        self.weak_against = ['Fighting', 'Flying', 'Poison', 'Ghost', 'Fire', 'Fairy']
+        self.basic_attack = 'Psychic Shift'
+        self.prob = 1.0
 
 
+    def __str__(self):
+        return f'I am {self.name} and I can do {self.basic_attack}'
 
-class BugType(Pokemon):
+    def attack(self, other):
+        if  self.status_condition == None:
+            self.speak()
+        if isinstance(other, (Poison, Fighting)):
+            self.speak()
+            print(self.name, ' used ', self.basic_attack, '!')
+            other.receive_damage(self.damage * 2)
+        elif isinstance(other, (Bug, Ghost, Dark)):
+            self.speak()
+            print(self.name, ' used ', self.basic_attack, '!')
+            other.receive_damage(self.damage / 2)
+        elif isinstance(other, Psychic):
+            other.receive_damage(self.damage)
+
+        if random() < self.prob and type(other) != Psychic:
+            other.paralyzed = True
+            print(other.name, 'is paralyzed')
+
+
+class Bug(Pokemon):
     def __init__(self, name, trainer, hp):
         super().__init__(name, trainer)
         self.hp = hp
         self.basic_attack = 'Signal Beam'
         self.prob = .1
-        self.type = 'Bug'
-        self.strong_against = ['Grass', 'Psychic', 'Dark']
-        self.weak_against = ['Fighting', 'Flying', 'Poison', 'Ghost', 'Fire', 'Fairy']
 
     def attack(self, other):
         if  self.status_condition == None:
             self.speak()
             print(self.name, 'used', self.basic_attack, '!')
-            if other.type in self.strong_against:
-                print('yes')
+            if isinstance(other, (Grass, Psychic, Dark)) in self.strong_against:
                 other.receive_damage(self.damage*2)
-            elif other.type in self.weak_against:
+            elif isinstance(other, (Fighting, Flying, Poison, Ghost,Fire,Fairy)):
                 other.receive_damage(self.damage/2)
             else:
                 other.receive_damage(self.damage)
@@ -70,18 +84,39 @@ class BugType(Pokemon):
             print(other.name + ' is ' + other.status_condition)
 
     def __str__(self):
-        return super().__str__() + " hp" + str(self.name) + ")"
+        return super().__str__() + " HP " + str(self.hp)
 
 
+class Poison(Pokemon):
+    pass
+class Fighting(Pokemon):
+    pass
+class Ghost(Pokemon):
+    pass
+class Dark(Pokemon):
+    pass
+class Grass(Pokemon):
+    pass
+class Flying(Pokemon):
+    pass
+class Fire(Pokemon):
+    pass
+class Fairy(Pokemon):
+    pass
 
 
-Butterfree = BugType('Butterfree', 'Trey',100)
-Charizard =TestType('Char', 'Trey', 100)
-print(Butterfree.hp)
-Butterfree.attack(Charizard)
-Charizard.attack(Butterfree)
-print(Butterfree.hp)
-print(Charizard.hp)
+Butterfree = Bug('Butterfree', 'Trey',100)
+
 
 print(Butterfree)
+
+
+
+p1 = Psychic('Mewtwo', 'Jen', 100)
+p2 = Psychic('Gengar', 'James', 40)
+
+print(p1.hp)
+p2.attack(p1)
+print(p2.hp)
+print(p1.hp)
 
