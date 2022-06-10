@@ -1,4 +1,4 @@
-import Project3.py as pokemon
+import Project3 as pokemon
 
 class PokeGame:
     def __int__(self):
