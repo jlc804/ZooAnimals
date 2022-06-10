@@ -1,4 +1,3 @@
-import Pokemon_Class as pokemon
 from Pokemon_Class import Psychic as Psychic
 from Pokemon_Class import Bug as Bug
 import random
