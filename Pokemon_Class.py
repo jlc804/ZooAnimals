@@ -29,7 +29,6 @@ class Psychic(Pokemon):
 #Psychic Pokemon Class provided by Matthew Skokos
     def __init__(self, name, trainer, hp):
         super().__init__(name, trainer)
-        print('test')
         self.hp = hp
         self.basic_attack = 'Psychic Shift'
         self.prob = 1.0
